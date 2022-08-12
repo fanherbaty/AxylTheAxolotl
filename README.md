@@ -11,3 +11,5 @@ Made with the [Godot Game Engine](https://github.com/godotengine/godot)
 -   Movement = Arrows
 -   Start = Escape
 -   Select = Enter
+
+The Trello board: https://trello.com/b/jFLh6gFq/axyl
