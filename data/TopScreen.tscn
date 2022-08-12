@@ -1,0 +1,143 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://assets/menus/hud/topMenuSheet.png" type="Texture" id=1]
+[ext_resource path="res://data/hud/assets/GrapeSoda.tres" type="DynamicFont" id=2]
+[ext_resource path="res://data/hud/assets/YetBumbler.tres" type="DynamicFont" id=4]
+[ext_resource path="res://data/hud/TopScreen.gd" type="Script" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 96, 24 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 32, 16, 16 )
+
+[sub_resource type="Theme" id=3]
+default_font = ExtResource( 2 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 30, 24, 3 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 33, 24, 3 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 36, 24, 3 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 39, 24, 3 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 42, 24, 3 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 45, 24, 3 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 35, 16, 12 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 1 )
+region = Rect2( 36, 35, 12, 5 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 1 )
+region = Rect2( 36, 30, 12, 5 )
+
+[sub_resource type="SpriteFrames" id=20]
+animations = [ {
+"frames": [ SubResource( 27 ), SubResource( 28 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="ViewportTexture" id=29]
+viewport_path = NodePath("Viewport")
+
+[node name="Top Screen" type="CanvasLayer"]
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 288, 176 )
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="TopScren" type="Node2D" parent="Viewport"]
+position = Vector2( 144, 12 )
+script = ExtResource( 5 )
+
+[node name="BG" type="Sprite" parent="Viewport/TopScren"]
+texture = SubResource( 1 )
+
+[node name="Sunflower Counter" type="Sprite" parent="Viewport/TopScren"]
+position = Vector2( -28, -2 )
+texture = SubResource( 2 )
+
+[node name="Counter" type="Label" parent="Viewport/TopScren/Sunflower Counter"]
+margin_left = -3.0
+margin_top = -8.0
+margin_right = 5.0
+margin_bottom = 8.0
+theme = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 0.878431, 1 )
+custom_constants/line_spacing = 0
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Speedrun Timer" type="Node2D" parent="Viewport/TopScren"]
+position = Vector2( 1, -1 )
+
+[node name="Snake Segment 1" type="AnimatedSprite" parent="Viewport/TopScren/Speedrun Timer"]
+position = Vector2( -9, -8 )
+frames = SubResource( 10 )
+playing = true
+flip_h = true
+
+[node name="Snake Segment 2" type="AnimatedSprite" parent="Viewport/TopScren/Speedrun Timer"]
+position = Vector2( 27, -8 )
+frames = SubResource( 10 )
+playing = true
+
+[node name="Border" type="Sprite" parent="Viewport/TopScren/Speedrun Timer"]
+position = Vector2( 18, 1 )
+scale = Vector2( 3, 1 )
+texture = SubResource( 11 )
+offset = Vector2( -3, -1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Viewport/TopScren/Speedrun Timer"]
+position = Vector2( 9, -8 )
+frames = SubResource( 20 )
+
+[node name="Timer" type="Label" parent="Viewport/TopScren/Speedrun Timer"]
+margin_left = -18.0
+margin_top = -7.0
+margin_right = 38.0
+margin_bottom = 7.0
+custom_colors/font_color = Color( 1, 1, 0.878431, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "00.00.000"
+align = 1
+valign = 1
+
+[node name="ViewportContainer" type="TextureRect" parent="."]
+margin_right = 288.0
+margin_bottom = 21.0
+texture = SubResource( 29 )
